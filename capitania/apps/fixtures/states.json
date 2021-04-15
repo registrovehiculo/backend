@@ -1,0 +1,129 @@
+[
+  {
+    "model": "core.state",
+    "pk": 1,
+    "fields": {
+      "country": "CUB",
+      "name": "Artemisa"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 2,
+    "fields": {
+      "country": "CUB",
+      "name": "La Habana"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 3,
+    "fields": {
+      "country": "CUB",
+      "name": "Las Tunas"
+    }
+  },
+  {
+  "model": "core.state",
+    "pk": 4,
+    "fields": {
+      "country": "CUB",
+      "name": "Isla de la Juventud"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 5,
+    "fields": {
+    "country": "CUB",
+    "name": "Camagüey"
+  }
+  },
+  {
+    "model": "core.state",
+    "pk": 6, "fields": {
+    "country": "CUB",
+    "name": "Ciego de Avila"
+  }
+  },
+  {
+  "model": "core.state",
+  "pk": 7,
+  "fields": {
+    "country": "CUB",
+    "name": "Cienfuegos"
+  }
+},
+  {
+  "model": "core.state",
+  "pk": 8,
+  "fields": {
+    "country": "CUB",
+    "name": "Guantanamo"
+  }
+},
+  {
+  "model": "core.state",
+  "pk": 9,
+  "fields": {
+    "country": "CUB",
+    "name": "Holguin"
+  }
+},
+  {
+  "model": "core.state",
+  "pk": 10,
+  "fields": {
+    "country": "CUB",
+    "name": "Matanzas"
+  }
+},
+  {
+    "model": "core.state",
+    "pk": 11,
+    "fields": {
+      "country": "CUB",
+      "name": "Pinar del Rio"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 12,
+    "fields": {
+      "country": "CUB",
+      "name": "Sancti Spiritus"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 13,
+    "fields": {
+      "country": "CUB",
+      "name": "Santiago de Cuba"
+    }
+  },
+  {
+    "model": "core.state",
+    "pk": 14,
+    "fields": {
+      "country": "CUB",
+      "name": "Villa Clara"
+    }
+  },
+  {
+    "model": "core.state",
+  "pk": 15,
+  "fields": {
+  "country": "CUB",
+  "name": "Granma"
+  }
+},
+  {
+    "model": "core.state",
+    "pk": 16,
+    "fields": {
+      "country": "CUB",
+      "name": "Mayabeque"
+    }
+  }
+]

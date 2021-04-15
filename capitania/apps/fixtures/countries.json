@@ -1,0 +1,12 @@
+[
+  {
+    "model": "core.country",
+    "pk": "CUB",
+    "fields": {
+      "code_iso2": "CU",
+      "name_es": "Cuba",
+      "name_en": "Cuba",
+      "name_fr": "Cuba"
+    }
+  }
+]
