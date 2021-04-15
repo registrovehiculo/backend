@@ -1,0 +1,10 @@
+venv
+.idea
+.env
+media
+static
+/__pycache__
+__pycache__
+Lib
+Scripts
+cx_Oracle-doc

@@ -1,0 +1,102 @@
+import graphene
+
+from graphene_django.types import ObjectType
+from capitania.apps.api.types.users import UserType
+from capitania.apps.api.types.provincias import *
+from capitania.apps.api.types.vehiculo import VehiculoType
+from capitania.apps.api.types.adresses import *
+
+from capitania.apps.api.queries.PinarDelRio import ContributorsFromPinarQuery
+from capitania.apps.api.queries.Artemisa import ContributorsFromArtemisaQuery
+from capitania.apps.api.queries.Camaguey import ContributorsFromCamagueyQuery
+from capitania.apps.api.queries.CiegoDeAvila import ContributorsFromCiegoDeAvilaQuery
+from capitania.apps.api.queries.SanticEspiritud import ContributorsFromSanticEspiritudQuery
+from capitania.apps.api.queries.Guantanamo import ContributorsFromGuantanamoQuery
+from capitania.apps.api.queries.Holguin import ContributorsFromHolguinQuery
+from capitania.apps.api.queries.Granma import ContributorsFromGranmaQuery
+from capitania.apps.api.queries.IslaDeLaJuventud import ContributorsFromIslaDeLaJuventudQuery
+from capitania.apps.api.queries.Matanzas import ContributorsFromMatanzasQuery
+from capitania.apps.api.queries.Mayabeque import ContributorsFromMayabequeQuery
+from capitania.apps.api.queries.Cienfuegos import ContributorsFromCienfuegosQuery
+from capitania.apps.api.queries.SantiagoDeCuba import ContributorsFromSantiagoDeCubaQuery
+from capitania.apps.api.queries.LasTunas import ContributorsFromLasTunasQuery
+from capitania.apps.api.queries.VillaClara import ContributorsFromVillaClaraQuery
+from capitania.apps.api.queries.LaHabana import ContributorsFromLaHabanaQuery
+from capitania.apps.api.queries.InfogestiContributors import ContributorsFromInfogestiQuery
+from capitania.apps.api.queries.addresses import AddressQuery
+from capitania.apps.api.queries.Vehiculo import VehiculoQuery
+from capitania.apps.api.mutations import searches as searches_mutations
+from graphene_django.types import ObjectType
+from capitania.apps.api.types.users import UserType
+from capitania.apps.api.types.shipment import ShipmentType
+from capitania.apps.api.types.infogestiShipement import InfogestiShipmentType, ClienteType
+from capitania.apps.api.mutations import auth as auth_mutations
+from capitania.apps.api.queries.users import UserQuery
+from capitania.apps.api.queries.shipment import ShipmentQuery
+
+
+class Mutation(
+    ObjectType
+):
+    login = auth_mutations.LoginMutation.Field()
+    search = searches_mutations.SearchMutation.Field()
+
+
+class Query(
+    ShipmentQuery,
+    ContributorsFromVillaClaraQuery,
+    ContributorsFromLasTunasQuery,
+    ContributorsFromSantiagoDeCubaQuery,
+    ContributorsFromCienfuegosQuery,
+    ContributorsFromMayabequeQuery,
+    ContributorsFromMatanzasQuery,
+    ContributorsFromIslaDeLaJuventudQuery,
+    ContributorsFromGranmaQuery,
+    ContributorsFromHolguinQuery,
+    ContributorsFromGuantanamoQuery,
+    ContributorsFromSanticEspiritudQuery,
+    ContributorsFromCiegoDeAvilaQuery,
+    ContributorsFromCamagueyQuery,
+    ContributorsFromArtemisaQuery,
+    ContributorsFromPinarQuery,
+    ContributorsFromInfogestiQuery,
+    ContributorsFromLaHabanaQuery,
+    AddressQuery,
+    UserQuery,
+    VehiculoQuery,
+    ObjectType,
+):
+    pass
+
+
+types = [
+    UserType,
+    ArtemisaType,
+    PinarDelRioType,
+    CamagueyType,
+    CiegoDeAvilaType,
+    CienfuegosType,
+    GranmaType,
+    GuantanamoType,
+    HolguinType,
+    IslaDeLaJuventudType,
+    LasTunasType,
+    MayabequeType,
+    SantiagoDeCubaType,
+    SanticEspiritudType,
+    VillaClaraType,
+    MatanzasType,
+    LaHabanaType,
+    VehiculoType,
+    InfogestiContributorsType,
+    AddressType,
+    CountryType,
+    StateType,
+    CityType,
+    UserType,
+    InfogestiShipmentType,
+    ShipmentType,
+    ClienteType
+
+]
+schema = graphene.Schema(query=Query, mutation=Mutation, types=types)
