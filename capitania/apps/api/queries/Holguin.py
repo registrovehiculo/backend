@@ -107,46 +107,46 @@ class ContributorsFromHolguinQuery(graphene.ObjectType):
 
         if city_name == 'Gibara':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3201 and DPA = 3202 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3201 and DPA = 3201 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Rafael Freyre':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3202 and DPA = 3203 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3202 and DPA = 3202 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Banes':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3203 and DPA = 3204 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3203 and DPA = 3203 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Antilla':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3204 and DPA = 3205 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3204 and DPA = 3204 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Baguanos':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3205 and DPA = 3206 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3205 and DPA = 3205 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Holguin':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3206 and DPA = 3207 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3206 and DPA = 3206 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Calixto Garcia':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3207 and DPA = 3208 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3207 and DPA = 3207 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Cacocum':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3208 and DPA = 3209 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3208 and DPA = 3208 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Urbano Noris':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3209 and DPA = 3210 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3209 and DPA = 3209 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Cueto':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3210 and DPA = 3211 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3210 and DPA = 3210 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Mayari':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3211 and DPA = 3212 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3211 and DPA = 3211 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Frank Pais':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3212 and DPA = 3213 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3212 and DPA = 3212 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Sagua de Tanamo':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3213 and DPA = 3214 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3213 and DPA = 3213 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
         if city_name == 'Moa':
             return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3214 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_HOLGUIN h ON h.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3214 and DPA = 3214 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
 
 
     # 4 Contribuyentes totalmente coincidentes
