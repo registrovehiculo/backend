@@ -17,7 +17,7 @@ class ContributorsFromArtemisaQuery(graphene.ObjectType):
         # artemisa
         if city_name == 'Bahia Honda':
             return Artemisa.objects.raw(
-                'select distinct distinct * from CORE_ARTEMISA art LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON art.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 2201')
+                'select distinct * from CORE_ARTEMISA art LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON art.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 2201')
         if city_name == 'Alquizar':
             return Artemisa.objects.raw(
                 'select distinct * from CORE_ARTEMISA art LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON art.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 2202')
