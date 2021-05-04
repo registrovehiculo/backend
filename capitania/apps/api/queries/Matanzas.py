@@ -1,12 +1,12 @@
 import graphene
-from capitania.apps.api.types.provincias import MatanzasType,InfogestiContributorsType
-from capitania.apps.core.models import Matanzas, InfogestiContributors
+from capitania.apps.api.types.provincias import MatanzasType,MatanzasType
+from capitania.apps.core.models import Matanzas, Matanzas
 
 
 class ContributorsFromMatanzasQuery(graphene.ObjectType):
     contributors_missing_in_onat_matanzas = graphene.List(MatanzasType, city_name=graphene.String())
-    contributors_with_different_information_matanzas = graphene.List(MatanzasType, city_name=graphene.String())
-    contributors_with_different_information_matanzas_infogesti = graphene.List(InfogestiContributorsType, city_name=graphene.String())
+    contributors_with_different_information_matanzas_plate = graphene.List(MatanzasType, city_name=graphene.String())
+    contributors_with_different_information_matanzas_name = graphene.List(MatanzasType, city_name=graphene.String())
     contributors_with_equals_information_matanzas = graphene.List(MatanzasType, city_name=graphene.String())
     matanzas = graphene.List(MatanzasType)
 
@@ -54,90 +54,90 @@ class ContributorsFromMatanzasQuery(graphene.ObjectType):
                 'select distinct * from CORE_MATANZAS m LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 2513')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_matanzas(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_matanzas_name(self, info, city_name=graphene.String()):
 
         if city_name == 'Matanzas':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2501 and DPA = 2501 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2501 and h.DPA = 2501 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cardenas':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2502 and DPA = 2502 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2502 and h.DPA = 2502 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Marti':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2503 and DPA = 2503 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2503 and h.DPA = 2503 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Colon':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2504 and DPA = 2504 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2504 and h.DPA = 2504 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Perico':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2505 and DPA = 2505 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2505 and h.DPA = 2505 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Jovellanos':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2506 and DPA = 2506 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2506 and h.DPA = 2506 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Pedro Betancourt':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2507 and DPA = 2507 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2507 and h.DPA = 2507 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Limonar':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2508 and DPA = 2508 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2508 and h.DPA = 2508 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Union de Reyes':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2509 and DPA = 2509 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2509 and h.DPA = 2509 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cienaga De Zapata':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2510 and DPA = 2510 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2510 and h.DPA = 2510 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Jagüey Grande':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2511 and DPA = 2511 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2511 and h.DPA = 2511 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Calimete':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2512 and DPA = 2512 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2512 and h.DPA = 2512 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Los Arabos':
             return Matanzas.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2513 and DPA = 2513 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT")
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2513 and h.DPA = 2513 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
 
-    def resolve_contributors_with_different_information_matanzas_infogesti(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_matanzas_plate(self, info, city_name=graphene.String()):
 
         if city_name == 'Matanzas':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2501 and DPA = 2501 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2501 and h.DPA = 2501 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Cardenas':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2502 and DPA = 2502 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2502 and h.DPA = 2502 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Marti':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2503 and DPA = 2503 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2503 and h.DPA = 2503 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Colon':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2504 and DPA = 2504 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2504 and h.DPA = 2504 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Perico':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2505 and DPA = 2505 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2505 and h.DPA = 2505 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Jovellanos':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2506 and DPA = 2506 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2506 and h.DPA = 2506 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Pedro Betancourt':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2507 and DPA = 2507 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2507 and h.DPA = 2507 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Limonar':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2508 and DPA = 2508 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2508 and h.DPA = 2508 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Union de Reyes':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2509 and DPA = 2509 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2509 and h.DPA = 2509 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Cienaga De Zapata':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2510 and DPA = 2510 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2510 and h.DPA = 2510 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Jagüey Grande':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2511 and DPA = 2511 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2511 and h.DPA = 2511 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Calimete':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2512 and DPA = 2512 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2512 and h.DPA = 2512 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Los Arabos':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from CORE_MATANZAS m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 2513 and DPA = 2513 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Matanzas.objects.raw(
+                "select distinct * from CORE_MATANZAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2513 and h.DPA = 2513 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
 
 
     # 4 Contribuyentes totalmente coincidentes

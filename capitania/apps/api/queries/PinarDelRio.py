@@ -1,12 +1,12 @@
 import graphene
-from capitania.apps.api.types.provincias import PinarDelRioType, InfogestiContributorsType
-from capitania.apps.core.models import PinarDelRio, InfogestiContributors
+from capitania.apps.api.types.provincias import PinarDelRioType, PinarDelRioType
+from capitania.apps.core.models import PinarDelRio, PinarDelRio
 
 
 class ContributorsFromPinarQuery(graphene.ObjectType):
     contributors_missing_in_onat_pinar = graphene.List(PinarDelRioType, city_name=graphene.String())
-    contributors_with_different_information_pinar = graphene.List(PinarDelRioType, city_name=graphene.String())
-    contributors_with_different_information_pinar_infogesti = graphene.List(InfogestiContributorsType, city_name=graphene.String())
+    contributors_with_different_information_pinar_plate = graphene.List(PinarDelRioType, city_name=graphene.String())
+    contributors_with_different_information_pinar_name = graphene.List(PinarDelRioType, city_name=graphene.String())
     contributors_with_equals_information_pinar = graphene.List(PinarDelRioType, city_name=graphene.String())
     pinar_del_rio = graphene.List(PinarDelRioType)
 
@@ -49,78 +49,78 @@ class ContributorsFromPinarQuery(graphene.ObjectType):
 
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_pinar(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_pinar_plate(self, info, city_name=graphene.String()):
 
         if city_name == 'Sandino':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2101 and DPA = 2101 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2101 and h.DPA = 2101 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Mantua':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2102 and DPA = 2102 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2102 and h.DPA = 2102 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Minas De Matahambre':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2103 and DPA = 2103 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2103 and h.DPA = 2103 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Viñales':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2104 and DPA = 2104 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2104 and h.DPA = 2104 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'La Palma':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2105 and DPA = 2105 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2105 and h.DPA = 2105 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Los Palacios':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2106 and DPA = 2106 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2106 and h.DPA = 2106 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Consolacion del Sur':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2107 and DPA = 2107 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2107 and h.DPA = 2107 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Pinar del Rio':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2108 and DPA = 2108 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2108 and h.DPA = 2108 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'San Luis':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2109 and DPA = 2109 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2109 and h.DPA = 2109 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'San Juan y Martinez':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2110 and DPA = 2110 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2110 and h.DPA = 2110 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
         if city_name == 'Guane':
             return PinarDelRio.objects.raw(
-                "select distinct * from CORE_PINARDELRIO p INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON p.NUMEROIDENTIDAD =  info.NIT  and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2111 and DPA = 2111 WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2111 and h.DPA = 2111 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
 
 
-    def resolve_contributors_with_different_information_pinar_infogesti(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_pinar_name(self, info, city_name=graphene.String()):
 
         if city_name == 'Sandino':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2101 and DPA = 2101  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2101 and h.DPA = 2101 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Mantua':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2102 and DPA = 2102  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2102 and h.DPA = 2102 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Minas De Matahambre':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2103 and DPA = 2103  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2103 and h.DPA = 2103 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Viñales':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2104 and DPA = 2104  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2104 and h.DPA = 2104 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'La Palma':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2105 and DPA = 2105  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2105 and h.DPA = 2105 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Los Palacios':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2106 and DPA = 2106  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2106 and h.DPA = 2106 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Consolacion del Sur':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2107 and DPA = 2107  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2107 and h.DPA = 2107 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Pinar del Rio':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2108 and DPA = 2108  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2108 and h.DPA = 2108 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Luis':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2109 and DPA = 2109  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2109 and h.DPA = 2109 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Juan y Martinez':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2110 and DPA = 2110  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2110 and h.DPA = 2110 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Guane':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_PINARDELRIO p ON p.NUMEROIDENTIDAD =  info.NIT   and info.ES_PROPIETARIO_TT = '1' and UNIDAD = 2111 and DPA = 2111  WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return PinarDelRio.objects.raw(
+                "select distinct * from CORE_PINARDELRIO h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2111 and h.DPA = 2111 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_pinar(self, info, city_name=graphene.String()):

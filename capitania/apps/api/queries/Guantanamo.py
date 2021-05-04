@@ -1,12 +1,12 @@
 import graphene
-from capitania.apps.api.types.provincias import GuantanamoType, InfogestiContributorsType
-from capitania.apps.core.models import Guantanamo, InfogestiContributors
+from capitania.apps.api.types.provincias import GuantanamoType, GuantanamoType
+from capitania.apps.core.models import Guantanamo, Guantanamo
 
 
 class ContributorsFromGuantanamoQuery(graphene.ObjectType):
     contributors_missing_in_onat_guantanamo = graphene.List(GuantanamoType, city_name=graphene.String())
-    contributors_with_different_information_guantanamo = graphene.List(GuantanamoType, city_name=graphene.String())
-    contributors_with_different_information_guantanamo_infogesti = graphene.List(InfogestiContributorsType, city_name=graphene.String())
+    contributors_with_different_information_guantanamo_plate = graphene.List(GuantanamoType, city_name=graphene.String())
+    contributors_with_different_information_guantanamo_name = graphene.List(GuantanamoType, city_name=graphene.String())
     contributors_with_equals_information_guantanamo = graphene.List(GuantanamoType, city_name=graphene.String())
     guantanamo = graphene.List(GuantanamoType)
 
@@ -47,72 +47,72 @@ class ContributorsFromGuantanamoQuery(graphene.ObjectType):
 
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_guantanamo(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_guantanamo_plate(self, info, city_name=graphene.String()):
 
         if city_name == 'El Salvador':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3501 and UNIDAD = 3501 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3501 and gm.DPA = 3501 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Manuel Tames':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3502 and UNIDAD = 3502 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3502 and gm.DPA = 3502 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Yateras':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3503 and UNIDAD = 3503 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3503 and gm.DPA = 3503 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Baracoa':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3504 and UNIDAD = 3504 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3504 and gm.DPA = 3504 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Maisi':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3505 and UNIDAD = 3505 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3505 and gm.DPA = 3505 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Imias':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3506 and UNIDAD = 3506 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3506 and gm.DPA = 3506 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'San Antonio Del Sur':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3507 and UNIDAD = 3507 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3507 and gm.DPA = 3507 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Caimanera':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3508 and UNIDAD = 3508 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3508 and gm.DPA = 3508 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Guantanamo':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3509 and UNIDAD = 3509 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3509 and gm.DPA = 3509 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
         if city_name == 'Niceto Perez':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3510 and UNIDAD = 3510 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3510 and gm.DPA = 3510 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> gm.CHAPANUEVA")
 
 
-    def resolve_contributors_with_different_information_guantanamo_infogesti(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_guantanamo_name(self, info, city_name=graphene.String()):
 
         if city_name == 'El Salvador':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3501 and DPA = 3501 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order  by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3501 and gm.DPA = 3501 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Manuel Tames':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3502 and DPA = 3502 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3502 and gm.DPA = 3502 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Yateras':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3503 and DPA = 3503 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3503 and gm.DPA = 3503 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Baracoa':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3504 and DPA = 3504 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3504 and gm.DPA = 3504 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Maisi':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3505 and DPA = 3505 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3505 and gm.DPA = 3505 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Imias':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3506 and DPA = 3506 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3506 and gm.DPA = 3506 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Antonio Del Sur':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3507 and DPA = 3507 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3507 and gm.DPA = 3507 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Caimanera':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3508 and DPA = 3508 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3508 and gm.DPA = 3508 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Guantanamo':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3509 and DPA = 3509 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3509 and gm.DPA = 3509 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Niceto Perez':
-            return InfogestiContributors.objects.raw(
-                "select distinct * from IG_CONTRIBUYENTE_PN@infogesti info INNER JOIN CORE_GUANTANAMO gm ON gm.NUMEROIDENTIDAD =  info.NIT and UNIDAD = 3510 and DPA = 3510 and info.ES_PROPIETARIO_TT = '1' WHERE NOMBRE_COMPLETO <> DATOSPERSONA OR NUMEROIDENTIDAD <> NIT order by NIT")
+            return Guantanamo.objects.raw(
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3510 and gm.DPA = 3510 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
 
     # 4 Contribuyentes totalmente coincidentes
