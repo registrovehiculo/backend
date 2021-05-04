@@ -123,37 +123,37 @@ class ContributorsFromMayabequeQuery(graphene.ObjectType):
     def resolve_contributors_with_equals_information_mayabeque(self, info, city_name=graphene.String()):
         if city_name == 'Bejucal':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2401 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2401 and h.DPA = 2401 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'San Jose de las Lajas':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2402 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2402 and h.DPA = 2402 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Jaruco':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2403 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2403 and h.DPA = 2403 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Santa Cruz del Norte':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2404 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2404 and h.DPA = 2404 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Madruga':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2405 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2405 and h.DPA = 2405 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Nueva Paz':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2406 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2406 and h.DPA = 2406 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'San Nicolás':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2407 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2407 and h.DPA = 2407 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Güines':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2408 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2408 and h.DPA = 2408 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Melena del Sur':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2409 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2409 and h.DPA = 2409 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Batabano':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2410 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2410 and h.DPA = 2410 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Quivican':
             return Mayabeque.objects.raw(
-                'select distinct * from CORE_MAYABEQUE m INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON m.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2411 order  by  NUMEROIDENTIDAD')
+                'select distinct * from CORE_MAYABEQUE h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2411 and h.DPA = 2411 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
     def resolve_mayabeque(self, info):
         return Mayabeque.objects.all()

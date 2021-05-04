@@ -109,31 +109,31 @@ class ContributorsFromSantiagoDeCubaQuery(graphene.ObjectType):
 
         if city_name == 'Contramaestre':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3401 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3401 and h.DPA = 3401 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Mella':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3402 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3402 and h.DPA = 3402 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'San Luis':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3403 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3403 and h.DPA = 3403 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Segundo Frente':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3404 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3404 and h.DPA = 3404 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Songo - La Maya':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3405 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3405 and h.DPA = 3405 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Santiago de Cuba':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3406 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3406 and h.DPA = 3406 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Palma Soriano':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3407 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3407 and h.DPA = 3407 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Tercer Frente':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3408 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3408 and h.DPA = 3408 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Guamá':
             return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 3409 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3409 and h.DPA = 3409 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
     def resolve_santiago_de_cuba(self, info):
         return SantiagoDeCuba.objects.all()

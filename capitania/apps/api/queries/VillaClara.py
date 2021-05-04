@@ -143,43 +143,43 @@ class ContributorsFromVillaClaraQuery(graphene.ObjectType):
 
         if city_name == 'Corralillo':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2601 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2601 and h.DPA = 2601 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Quemado de Güines':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2602 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2602 and h.DPA = 2602 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Sagua la Grande':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2603 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2603 and h.DPA = 2603 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Encrucijada':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2604 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2604 and h.DPA = 2604 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Camajuaní':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2605 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2605 and h.DPA = 2605 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Caibarién':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2606 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2606 and h.DPA = 2606 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'San Juan de los Remedios':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2607 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2607 and h.DPA = 2607 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Placetas':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2608 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2608 and h.DPA = 2608 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Santa Clara':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2609 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2609 and h.DPA = 2609 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Cifuentes':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2610 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2610 and h.DPA = 2610 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Santo Domingo':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2611 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2611 and h.DPA = 2611 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Ranchuelo':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2612 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2612 and h.DPA = 2612 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Manicaragua':
             return VillaClara.objects.raw(
-                'select * from RECA.CORE_VILLACLARA v INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON v.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT and DPA = 2613 order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2613 and h.DPA = 2613 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
     def resolve_villa_clara(self, info):
         return VillaClara.objects.all()
