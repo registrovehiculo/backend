@@ -31,7 +31,7 @@ class ContributorsFromIslaDeLaJuventudQuery(graphene.ObjectType):
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_isla_de_la_juventud(self, info, city_name=graphene.String()):
-        isla_de_la_juventud = IslaDeLaJuventud.objects.raw('select distinct * from CORE_ISLADELAJUVENTUD i INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON i.NUMEROIDENTIDAD =  info.NIT WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT')
+        isla_de_la_juventud = IslaDeLaJuventud.objects.raw('select distinct * from CORE_ISLADELAJUVENTUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 4001 and h.DPA = 4001 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         return isla_de_la_juventud
 
     def resolve_isla_de_la_juventud(self, info):

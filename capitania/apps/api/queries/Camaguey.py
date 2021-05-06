@@ -144,43 +144,43 @@ class ContributorsFromCamagueyQuery(graphene.ObjectType):
     def resolve_contributors_with_equals_information_camaguey(self, info, city_name=graphene.String()):
         if city_name == 'Carlos Manuel De Cespedes':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3001 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3001 and h.DPA = 3001 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Esmeralda':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3002 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3002 and h.DPA = 3002 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Sierra De Cubitas':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3003 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3003 and h.DPA = 3003 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Minas':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3004 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3004 and h.DPA = 3004 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Nuevitas':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3005 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3005 and h.DPA = 3005 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Guaimaro':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3006 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3006 and h.DPA = 3006 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Sibanicu':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3007 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3007 and h.DPA = 3007 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Camagüey':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3008 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3008 and h.DPA = 3008 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Florida':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3009 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3009 and h.DPA = 3009 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Vertientes':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3010 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3010 and h.DPA = 3010 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Jimaguayu':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3011 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3011 and h.DPA = 3011 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Najasa':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3012 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3012 and h.DPA = 3012 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Santa Cruz del Sur':
             return Camaguey.objects.raw(
-                'select distinct * from CORE_CAMAGUEY cmg INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cmg.NUMEROIDENTIDAD =  info.NIT and DPA = 3013 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT ORDER BY  NUMEROIDENTIDAD')
+                'select distinct * from CORE_CAMAGUEY h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3013 and h.DPA = 3013 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
 
     def resolve_camaguey(self, info):

@@ -143,43 +143,43 @@ class ContributorsFromGranmaQuery(graphene.ObjectType):
     def resolve_contributors_with_equals_information_granma(self, info, city_name=graphene.String()):
         if city_name == 'Rio Cauto':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3301 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3301 and h.DPA = 3301 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Cauto Cristo':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3302 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3302 and h.DPA = 3302 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Jiguani':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3303 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3303 and h.DPA = 3303 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Bayamo':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3304 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3304 and h.DPA = 3304 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Yara':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3305 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3305 and h.DPA = 3305 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Manzanillo':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3306 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3306 and h.DPA = 3306 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Campechuela':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3307 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3307 and h.DPA = 3307 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Media Luna':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3308 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3308 and h.DPA = 3308 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Niquero':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3309 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3309 and h.DPA = 3309 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Pilon':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3310 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3310 and h.DPA = 3310 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Bartolome Maso':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3311 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3311 and h.DPA = 3311 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Buey Arriba':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3312 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3312 and h.DPA = 3312 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Guisa':
             return Granma.objects.raw(
-                'select distinct * from CORE_GRANMA gm INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON gm.NUMEROIDENTIDAD =  info.NIT and DPA = 3313 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_GRANMA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3313 and h.DPA = 3313 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
 
     def resolve_granma(self, info):

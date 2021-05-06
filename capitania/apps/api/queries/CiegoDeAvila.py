@@ -118,34 +118,34 @@ class ContributorsFromCiegoDeAvilaQuery(graphene.ObjectType):
 
         if city_name == 'Chambas':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2901 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2901 and h.DPA = 2901 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Moron':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2902 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD2')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2902 and h.DPA = 2902 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Bolivia':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2903 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2903 and h.DPA = 2903 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Primero De Enero':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2904 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2904 and h.DPA = 2904 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Ciro Redondo':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2905 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2905 and h.DPA = 2905 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Florencia':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2906 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2906 and h.DPA = 2906 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Majagua':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2907 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2907 and h.DPA = 2907 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Ciego de Avila':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2908 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2908 and h.DPA = 2908 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Venezuela':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2909 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2909 and h.DPA = 2909 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
         if city_name == 'Baragua':
             return CiegoDeAvila.objects.raw(
-                'select distinct * from CORE_CIEGODEAVILA cav INNER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON cav.NUMEROIDENTIDAD =  info.NIT and DPA = 2910 WHERE NOMBRE_COMPLETO = DATOSPERSONA  and NUMEROIDENTIDAD = NIT order by NUMEROIDENTIDAD')
+                'select distinct * from CORE_CIEGODEAVILA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2910 and h.DPA = 2910 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
 
     def resolve_ciego(self, info):
         return CiegoDeAvila.objects.all()
