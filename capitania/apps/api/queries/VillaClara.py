@@ -100,43 +100,43 @@ class ContributorsFromVillaClaraQuery(graphene.ObjectType):
 
         if city_name == 'Corralillo':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2601 and h.DPA = 2601 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2601 and h.DPA = 2601 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Quemado de Güines':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2602 and h.DPA = 2602 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2602 and h.DPA = 2602 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Sagua la Grande':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2603 and h.DPA = 2603 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2603 and h.DPA = 2603 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Encrucijada':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2604 and h.DPA = 2604 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2604 and h.DPA = 2604 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Camajuaní':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2605 and h.DPA = 2605 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2605 and h.DPA = 2605 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Caibarién':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2606 and h.DPA = 2606 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2606 and h.DPA = 2606 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Juan de los Remedios':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2607 and h.DPA = 2607 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2607 and h.DPA = 2607 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Placetas':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2608 and h.DPA = 2608 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2608 and h.DPA = 2608 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Santa Clara':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2609 and h.DPA = 2609 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2609 and h.DPA = 2609 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cifuentes':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2610 and h.DPA = 2610 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2610 and h.DPA = 2610 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Santo Domingo':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2611 and h.DPA = 2611 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2611 and h.DPA = 2611 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Ranchuelo':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2612 and h.DPA = 2612 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2612 and h.DPA = 2612 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Manicaragua':
             return VillaClara.objects.raw(
-                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2613 and h.DPA = 2613 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_VILLACLARA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2613 and h.DPA = 2613 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_villa_clara(self, info, city_name=graphene.String()):

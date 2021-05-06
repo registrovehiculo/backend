@@ -70,28 +70,28 @@ class ContributorsFromCienfuegosQuery(graphene.ObjectType):
 
         if city_name == 'Aguada de Pasajeros':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2701 and cf.DPA = 2701 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2701 and cf.DPA = 2701 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Rodas':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2702 and cf.DPA = 2702 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2702 and cf.DPA = 2702 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Palmira':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2703 and cf.DPA = 2703 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2703 and cf.DPA = 2703 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'las Lajas':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2704 and cf.DPA = 2704 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2704 and cf.DPA = 2704 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cruces':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2705 and cf.DPA = 2705 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2705 and cf.DPA = 2705 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cumanayagua':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2706 and cf.DPA = 2706 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2706 and cf.DPA = 2706 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cienfuegos':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2707 and cf.DPA = 2707 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2707 and cf.DPA = 2707 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Abreus':
             return Cienfuegos.objects.raw(
-                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2708 and cf.DPA = 2708 AND cl.NOMBRE_COMPLETO <> cf.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIENFUEGOS cf inner join CLIENTE@infogesti cl on cl.NIT = cf.NUMEROIDENTIDAD AND cl.UNIDAD = 2708 and cf.DPA = 2708 AND upper(cl.NOMBRE_COMPLETO) <> upper(cf.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_cienfuegos(self, info, city_name=graphene.String()):

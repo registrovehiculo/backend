@@ -89,37 +89,37 @@ class ContributorsFromArtemisaQuery(graphene.ObjectType):
     def resolve_contributors_with_different_information_artemisa_name(self, info, city_name=graphene.String()):
         if city_name == 'Bahia Honda':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2201 and art.DPA = 2201 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2201 and art.DPA = 2201 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Alquizar':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2202 and art.DPA = 2202 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2202 and art.DPA = 2202 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Artemisa':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2203 and art.DPA = 2203 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2203 and art.DPA = 2203 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Bauta':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2204 and art.DPA = 2204 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2204 and art.DPA = 2204 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Caimito':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2205 and art.DPA = 2205 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2205 and art.DPA = 2205 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Candelaria':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2206 and art.DPA = 2206 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2206 and art.DPA = 2206 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Guanajay':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2207 and art.DPA = 2207 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2207 and art.DPA = 2207 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Gueira de Melena':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2208 and art.DPA = 2208 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2208 and art.DPA = 2208 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Mariel':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2209 and art.DPA = 2209 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2209 and art.DPA = 2209 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Antonio de los Banos':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2210 and art.DPA = 2210 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2210 and art.DPA = 2210 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Cristobal':
             return Artemisa.objects.raw(
-                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2211 and art.DPA = 2211 AND cl.NOMBRE_COMPLETO <> art.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_ARTEMISA art inner join CLIENTE@infogesti cl on cl.NIT = art.NUMEROIDENTIDAD AND cl.UNIDAD = 2211 and art.DPA = 2211 AND upper(cl.NOMBRE_COMPLETO) <> upper(art.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_artemisa(self, info, city_name=graphene.String()):

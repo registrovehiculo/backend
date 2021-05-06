@@ -69,28 +69,28 @@ class ContributorsFromSanticEspiritudQuery(graphene.ObjectType):
 
         if city_name == 'Yaguajay':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2801 and h.DPA = 2801 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2801 and h.DPA = 2801 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Jatibonico':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2802 and h.DPA = 2802 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2802 and h.DPA = 2802 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Taguasco':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2803 and h.DPA = 2803 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2803 and h.DPA = 2803 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cabaiguán':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2804 and h.DPA = 2804 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2804 and h.DPA = 2804 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Fomento':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2805 and h.DPA = 2805 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2805 and h.DPA = 2805 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Trinidad':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2806 and h.DPA = 2806 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2806 and h.DPA = 2806 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Sancti Spiritus':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2807 and h.DPA = 2807 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2807 and h.DPA = 2807 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'La Sierpe':
             return SanticEspiritud.objects.raw(
-                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2808 and h.DPA = 2808 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_SANTICESPIRITUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2808 and h.DPA = 2808 AND upper(cl.NOMBRE_COMPLETO) <> upper(cl.NOMBRE_COMPLETO) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_santic_espiritud(self, info, city_name=graphene.String()):

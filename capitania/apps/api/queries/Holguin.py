@@ -107,46 +107,46 @@ class ContributorsFromHolguinQuery(graphene.ObjectType):
 
         if city_name == 'Gibara':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3201 and h.DPA = 3201 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3201 and h.DPA = 3201 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Rafael Freyre':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3202 and h.DPA = 3202 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3202 and h.DPA = 3202 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Banes':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3203 and h.DPA = 3203 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3203 and h.DPA = 3203 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Antilla':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3204 and h.DPA = 3204 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3204 and h.DPA = 3204 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Baguanos':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3205 and h.DPA = 3205 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3205 and h.DPA = 3205 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Holguin':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3206 and h.DPA = 3206 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3206 and h.DPA = 3206 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Calixto Garcia':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3207 and h.DPA = 3207 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3207 and h.DPA = 3207 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cacocum':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3208 and h.DPA = 3208 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3208 and h.DPA = 3208 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Urbano Noris':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3209 and h.DPA = 3209 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3209 and h.DPA = 3209 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Cueto':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3210 and h.DPA = 3210 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3210 and h.DPA = 3210 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Mayari':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3211 and h.DPA = 3211 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3211 and h.DPA = 3211 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Frank Pais':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3212 and h.DPA = 3212 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3212 and h.DPA = 3212 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Sagua de Tanamo':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3213 and h.DPA = 3213 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3213 and h.DPA = 3213 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Moa':
             return Holguin.objects.raw(
-                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3214 and h.DPA = 3214 AND cl.NOMBRE_COMPLETO <> h.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_HOLGUIN h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3214 and h.DPA = 3214 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
 
     # 4 Contribuyentes totalmente coincidentes

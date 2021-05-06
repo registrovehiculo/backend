@@ -83,34 +83,34 @@ class ContributorsFromCiegoDeAvilaQuery(graphene.ObjectType):
 
         if city_name == 'Chambas':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2901 and cg.DPA = 2901 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2901 and cg.DPA = 2901 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Moron':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2902 and cg.DPA = 2902 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2902 and cg.DPA = 2902 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Bolivia':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2903 and cg.DPA = 2903 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2903 and cg.DPA = 2903 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Primero De Enero':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2904 and cg.DPA = 2904 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2904 and cg.DPA = 2904 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Ciro Redondo':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2905 and cg.DPA = 2905 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2905 and cg.DPA = 2905 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Florencia':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2906 and cg.DPA = 2906 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2906 and cg.DPA = 2906 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Majagua':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2907 and cg.DPA = 2907 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2907 and cg.DPA = 2907 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Ciego de Avila':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2908 and cg.DPA = 2908 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2908 and cg.DPA = 2908 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Venezuela':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2909 and cg.DPA = 2909 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2909 and cg.DPA = 2909 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Baragua':
             return CiegoDeAvila.objects.raw(
-                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2910 and cg.DPA = 2910 AND cl.NOMBRE_COMPLETO <> cg.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_CIEGODEAVILA cg inner join CLIENTE@infogesti cl on cl.NIT = cg.NUMEROIDENTIDAD AND cl.UNIDAD = 2910 and cg.DPA = 2910 AND upper(cl.NOMBRE_COMPLETO) <> upper(cg.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
 
     # 4 Contribuyentes totalmente coincidentes

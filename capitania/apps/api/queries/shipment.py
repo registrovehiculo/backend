@@ -19,7 +19,7 @@ class ShipmentQuery:
         return Shipment.objects.all().exclude(Q(owner_name__isnull=True) | Q(owner_name='')).order_by('id_number')
 
     def resolve_owner_with_more_than_one_shipment(self, info):
-        # dupes = Shipment.objects.values('id_number', 'owner_name').annotate(Count('id_number')).order_by(
+        # dupes = Shipment.objects.values('id_number', 'shipment_name').annotate(Count('id_number')).order_by(
         #     'id_number').filter(id_number__count__gt=1)
         # return Shipment.objects.filter(id_number__in=[item['id_number'] for item in dupes]).order_by('id_number')
         return Shipment.objects.raw('SELECT distinct * FROM (SELECT s.*, COUNT(*) OVER (PARTITION BY ID_NUMBER) c FROM CORE_SHIPMENT s) WHERE c > 1')

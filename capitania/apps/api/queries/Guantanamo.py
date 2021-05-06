@@ -85,34 +85,34 @@ class ContributorsFromGuantanamoQuery(graphene.ObjectType):
 
         if city_name == 'El Salvador':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3501 and gm.DPA = 3501 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3501 and gm.DPA = 3501 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Manuel Tames':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3502 and gm.DPA = 3502 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3502 and gm.DPA = 3502 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Yateras':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3503 and gm.DPA = 3503 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3503 and gm.DPA = 3503 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Baracoa':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3504 and gm.DPA = 3504 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3504 and gm.DPA = 3504 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Maisi':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3505 and gm.DPA = 3505 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3505 and gm.DPA = 3505 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Imias':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3506 and gm.DPA = 3506 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3506 and gm.DPA = 3506 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'San Antonio Del Sur':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3507 and gm.DPA = 3507 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3507 and gm.DPA = 3507 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Caimanera':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3508 and gm.DPA = 3508 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3508 and gm.DPA = 3508 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Guantanamo':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3509 and gm.DPA = 3509 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3509 and gm.DPA = 3509 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
         if city_name == 'Niceto Perez':
             return Guantanamo.objects.raw(
-                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3510 and gm.DPA = 3510 AND cl.NOMBRE_COMPLETO <> gm.DATOSPERSONA inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+                "select distinct * from CORE_GUANTANAMO gm inner join CLIENTE@infogesti cl on cl.NIT = gm.NUMEROIDENTIDAD AND cl.UNIDAD = 3510 and gm.DPA = 3510 AND upper(cl.NOMBRE_COMPLETO) <> upper(gm.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
 
 
     # 4 Contribuyentes totalmente coincidentes
