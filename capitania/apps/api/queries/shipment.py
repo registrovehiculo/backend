@@ -14,6 +14,8 @@ class ShipmentQuery:
     owner_with_one_shipment = graphene.List(ShipmentType)
     registered_owners_more_than_one = graphene.List(ShipmentType)
     registered_owners_one = graphene.List(ShipmentType)
+    shipment_user_missing_in_onat = graphene.List(ShipmentType)
+    shipment_user_missing_in_system = graphene.List(ClienteType)
 
     def resolve_shipment(self, info):
         return Shipment.objects.all().exclude(Q(owner_name__isnull=True) | Q(owner_name='')).order_by('id_number')
@@ -24,6 +26,11 @@ class ShipmentQuery:
         # return Shipment.objects.filter(id_number__in=[item['id_number'] for item in dupes]).order_by('id_number')
         return Shipment.objects.raw('SELECT distinct * FROM (SELECT s.*, COUNT(*) OVER (PARTITION BY ID_NUMBER) c FROM CORE_SHIPMENT s) WHERE c > 1')
 
+    def resolve_shipment_user_missing_in_onat(self, info):
+        return Shipment.objects.raw('SELECT s.* from  CORE_SHIPMENT s left outer join CLIENTE@INFOGESTI info on s.ID_NUMBER = info.NIT where info.NIT IS NULL order by s.ID_NUMBER')
+
+    def resolve_shipment_user_missing_in_system(self, info):
+        return Cliente.objects.raw('SELECT distinct c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NOMBRE_EMBARCACION, c.ID from  CLIENTE@INFOGESTI c  inner join CLIENTE_EMBARCACION@INFOGESTI emb on emb.ID_CLIENTE = c.ID LEFT OUTER JOIN CORE_SHIPMENT s on s.ID_NUMBER = c.NIT WHERE s.ID_NUMBER is null')
 
     def resolve_owner_with_one_shipment(self, info):
         return Shipment.objects.raw('SELECT distinct * FROM (SELECT s.*, COUNT(*) OVER (PARTITION BY ID_NUMBER) c FROM CORE_SHIPMENT s) WHERE c = 1')

@@ -1,12 +1,11 @@
 from graphene_django.types import DjangoObjectType
-from capitania.apps.core.models import InfogestiShipment, Cliente
-
+from capitania.apps.core import models
 
 class InfogestiShipmentType(DjangoObjectType):
     class Meta:
-        model = InfogestiShipment
+        model = models.InfogestiShipment
 
 
 class ClienteType(DjangoObjectType):
     class Meta:
-        model = Cliente
+        model = models.Cliente

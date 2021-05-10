@@ -13,8 +13,8 @@ class RegisteredClient(graphene.Mutation):
         arr = graphene.List(graphene.String)
 
     def mutate(self, info, arr):
-        client = Cliente.objects.raw(
-        'Select * from CLIENTE_EMBARCACION@infogesti ce inner join CLIENTE@infogesti ci on ci.id = ce.id_cliente inner join CORE_SHIPMENT t on t.OWNER_NAME = ci.NOMBRE_COMPLETO')
+        # client = Cliente.objects.raw(
+        # 'Select * from CLIENTE_EMBARCACION@infogesti ce inner join CLIENTE@infogesti ci on ci.id = ce.id_cliente inner join CORE_SHIPMENT t on t.OWNER_NAME = ci.NOMBRE_COMPLETO')
         # print('*****************************************')
         client = Cliente.objects.all()
         # asd = InfogestiShipment.objects.all()
