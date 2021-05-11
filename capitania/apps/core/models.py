@@ -435,7 +435,7 @@ class Cliente(models.Model):
     nombre_completo = models.CharField(max_length=100, blank=True, null=True)
     nit = models.CharField(max_length=11, blank=True, null=True)
     dpa = models.CharField(max_length=4, blank=True, null=True)
-    nombre_embarcacion = models.CharField(max_length=100, blank=True, null=True)
+    nombre_embarcacion = models.CharField(max_length=50, blank=True, null=True)
 
 
     class Meta:
