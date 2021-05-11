@@ -436,6 +436,7 @@ class Cliente(models.Model):
     nit = models.CharField(max_length=11, blank=True, null=True)
     dpa = models.CharField(max_length=4, blank=True, null=True)
     nombre_embarcacion = models.CharField(max_length=50, blank=True, null=True)
+    nombre = models.CharField(max_length=50, blank=True, null=True)
 
 
     class Meta:

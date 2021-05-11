@@ -34,7 +34,7 @@ class ShipmentQuery:
         return Cliente.objects.raw('SELECT distinct c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NOMBRE_EMBARCACION, c.ID, emb.ID from  CLIENTE@INFOGESTI c  inner join CLIENTE_EMBARCACION@INFOGESTI emb on emb.ID_CLIENTE = c.ID LEFT OUTER JOIN CORE_SHIPMENT s on s.ID_NUMBER = c.NIT WHERE s.ID_NUMBER is null order by c.NIT')
 
     def resolve_shipment_user_different_shipment(self, info):
-        return Cliente.objects.raw('SELECT  DISTINCT c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NOMBRE_EMBARCACION, c.ID, emb.ID from  CLIENTE@INFOGESTI c  inner join CLIENTE_EMBARCACION@INFOGESTI emb on emb.ID_CLIENTE = c.ID INNER JOIN  CORE_SHIPMENT s on s.ID_NUMBER = c.NIT AND UPPER(s.SHIPMENT_NAME) <> UPPER(emb.NOMBRE_EMBARCACION) order by NIT')
+        return Cliente.objects.raw('SELECT  DISTINCT c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NOMBRE_EMBARCACION, cap.NOMBRE, c.ID from C_EMBARCACION_CAPITANIA@infogesti cap inner join CLIENTE_EMBARCACION@INFOGESTI emb on cap.ID = emb.ID_CAPITANIA INNER JOIN CLIENTE@INFOGESTI c  on emb.ID_CLIENTE = c.ID INNER JOIN  CORE_SHIPMENT s on s.ID_NUMBER = c.NIT AND UPPER(s.SHIPMENT_NAME) <> UPPER(emb.NOMBRE_EMBARCACION) order by NIT')
 
     def resolve_owner_with_one_shipment(self, info):
         return Shipment.objects.raw('SELECT distinct * FROM (SELECT s.*, COUNT(*) OVER (PARTITION BY ID_NUMBER) c FROM CORE_SHIPMENT s) WHERE c = 1')
