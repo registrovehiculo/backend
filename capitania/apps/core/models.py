@@ -438,6 +438,7 @@ class Cliente(models.Model):
     embarcacion = models.CharField(max_length=50, blank=True, null=True)
     capitania = models.CharField(max_length=50, blank=True, null=True)
     basificacion = models.CharField(max_length=50, blank=True, null=True)
+    registro = models.CharField(max_length=20, blank=True, null=True)
 
 
     class Meta:

@@ -19,6 +19,7 @@ class ShipmentQuery:
     shipment_user_different_shipment = graphene.List(ClienteType)
     shipment_user_different_base = graphene.List(ClienteType)
     shipment_user_different_captaincy = graphene.List(ClienteType)
+    shipment_user_different_register = graphene.List(ClienteType)
 
     def resolve_shipment(self, info):
         return Shipment.objects.all().exclude(Q(owner_name__isnull=True) | Q(owner_name='')).order_by('id_number')
@@ -44,6 +45,10 @@ class ShipmentQuery:
     # Usuarios con diferentes basificaciones
     def resolve_shipment_user_different_base(self, info):
         return Cliente.objects.raw('SELECT  DISTINCT c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NOMBRE_EMBARCACION as embarcacion,  cap.NOMBRE as capitania, bas.NOMBRE as basificacion, c.ID from C_EMBARCACION_CAPITANIA@infogesti cap inner join C_EMBARCACION_BASIFICACION@infogesti bas on cap.ID = bas.ID_CAPITANIA inner join CLIENTE_EMBARCACION@INFOGESTI emb on bas.ID = emb.ID_BASIFICACION INNER JOIN CLIENTE@INFOGESTI c  on emb.ID_CLIENTE = c.ID INNER JOIN  CORE_SHIPMENT s on s.ID_NUMBER = c.NIT AND UPPER(s.BASE_NAME) <> UPPER(bas.NOMBRE) order by NIT')
+
+    # Usuarios con diferentes registros
+    def resolve_shipment_user_different_register(self, info):
+        return Cliente.objects.raw('SELECT  DISTINCT c.DPA, c.NIT, c.NOMBRE_COMPLETO, emb.NUM_EXPEDIENTE as registro, c.ID from CLIENTE_EMBARCACION@INFOGESTI emb  INNER JOIN CLIENTE@INFOGESTI c  on emb.ID_CLIENTE = c.ID INNER JOIN  CORE_SHIPMENT s on s.ID_NUMBER = c.NIT where UPPER(s.REGISTRY_NUMBER) <> UPPER(emb.NUM_EXPEDIENTE)  order by nit')
 
     # Usuarios con diferentes capitanias
     def resolve_shipment_user_different_captaincy(self, info):
