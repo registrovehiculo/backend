@@ -1,5 +1,5 @@
-import graphene
 from cachecontrol import cache
+from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.timezone import now
@@ -440,7 +440,57 @@ class Cliente(models.Model):
     basificacion = models.CharField(max_length=50, blank=True, null=True)
     registro = models.CharField(max_length=20, blank=True, null=True)
 
-
     class Meta:
         db_table = u'"INFOGESTI"."CLIENTE"'
         managed = False
+
+
+class CreatedUpdatedModel(models.Model):
+    """
+    A model to reuse the `created_at` and `updated_at` fields
+    """
+    created_at = models.DateTimeField(default=now, null=True, verbose_name='Fecha de creación')
+    updated_at = models.DateTimeField(null=True)
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding:
+            self.updated_at = now()
+        super().save(*args, **kwargs)
+
+    @property
+    def is_new(self):
+        return self.created_at <= (now() - timedelta(days=1))
+
+
+class DeletedModel(models.Model):
+    """
+    A model to reuse the `updated_at` field
+    """
+
+    deleted_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+    def safe_delete(self):
+        self.deleted_at = now()
+        self.save()
+
+
+class Review(CreatedUpdatedModel):
+    """
+    A review made by an user
+    """
+    text = models.CharField(max_length=200)
+    reviewer = models.ForeignKey(User, related_name='reviewer', on_delete=models.CASCADE, verbose_name='Usuario')
+
+    class Meta:
+        db_table = 'review'
+        verbose_name = 'comentario'
+        verbose_name_plural = 'comentarios'
+
+    def __str__(self):
+        return self.text
