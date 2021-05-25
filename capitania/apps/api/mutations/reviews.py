@@ -38,11 +38,10 @@ class RemoveReviewMutation(graphene.Mutation):
     def mutate(self, info, id):
         try:
             review = Review.objects.get(pk=id)
-            review = Review.objects.get(review=review)
-            review.delete()
         except review.DoesNotExist:
             pass
-            return UpdateReviewMutation(status='ok')
+        review.delete()
+        return UpdateReviewMutation(status='ok')
 
 
 class CreateReview(graphene.Mutation):

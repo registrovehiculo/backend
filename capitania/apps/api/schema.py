@@ -32,6 +32,7 @@ from capitania.apps.api.types.infogestiShipement import InfogestiShipmentType, C
 from capitania.apps.api.mutations import auth as auth_mutations
 from capitania.apps.api.queries.users import UserQuery
 from capitania.apps.api.queries.shipment import ShipmentQuery
+from capitania.apps.api.queries.Reviews import UserReviewsQuery, AllReviewsQuery
 from capitania.apps.api.mutations import reviews as reviews_mutations
 
 
@@ -67,6 +68,8 @@ class Query(
     AddressQuery,
     UserQuery,
     VehiculoQuery,
+    UserReviewsQuery,
+    AllReviewsQuery,
     ObjectType,
 ):
     pass
