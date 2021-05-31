@@ -494,3 +494,21 @@ class Review(CreatedUpdatedModel):
 
     def __str__(self):
         return self.text
+
+
+class ReviewerAnswers(CreatedUpdatedModel):
+    """
+    An reviewer's answers made by an user
+    """
+    text = models.CharField(max_length=200)
+    reviewer_answers = models.ForeignKey(Review, related_name='reviewer_answers', on_delete=models.CASCADE,
+                                         verbose_name='Review')
+    username = models.CharField(max_length=55,  null=True, blank=True)
+
+    class Meta:
+        db_table = 'ReviewerAnswers'
+        verbose_name = 'respuestas'
+        verbose_name_plural = 'respuestas'
+
+    def __str__(self):
+        return self.text

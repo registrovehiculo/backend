@@ -1,9 +1,12 @@
 import graphene
-
+from graphene_django.types import ObjectType
 from capitania.apps.api.types.provincias import *
 from capitania.apps.api.types.vehiculo import VehiculoType
 from capitania.apps.api.types.adresses import *
-
+from capitania.apps.api.types.users import UserType
+from capitania.apps.api.types.reviews import ReviewType, ReviewerAnswersType
+from capitania.apps.api.types.shipment import ShipmentType
+from capitania.apps.api.types.infogestiShipement import InfogestiShipmentType, ClienteType
 from capitania.apps.api.queries.PinarDelRio import ContributorsFromPinarQuery
 from capitania.apps.api.queries.Artemisa import ContributorsFromArtemisaQuery
 from capitania.apps.api.queries.Camaguey import ContributorsFromCamagueyQuery
@@ -21,18 +24,13 @@ from capitania.apps.api.queries.LasTunas import ContributorsFromLasTunasQuery
 from capitania.apps.api.queries.VillaClara import ContributorsFromVillaClaraQuery
 from capitania.apps.api.queries.LaHabana import ContributorsFromLaHabanaQuery
 from capitania.apps.api.queries.InfogestiContributors import ContributorsFromInfogestiQuery
+from capitania.apps.api.queries.users import UserQuery
+from capitania.apps.api.queries.shipment import ShipmentQuery
+from capitania.apps.api.queries.Reviews import UserReviewsQuery, AllReviewsQuery, AllReviewsAnswersQuery, UserReviewAnswerQuery
 from capitania.apps.api.queries.addresses import AddressQuery
 from capitania.apps.api.queries.Vehiculo import VehiculoQuery
 from capitania.apps.api.mutations import searches as searches_mutations
-from graphene_django.types import ObjectType
-from capitania.apps.api.types.users import UserType
-from capitania.apps.api.types.reviews import ReviewType
-from capitania.apps.api.types.shipment import ShipmentType
-from capitania.apps.api.types.infogestiShipement import InfogestiShipmentType, ClienteType
 from capitania.apps.api.mutations import auth as auth_mutations
-from capitania.apps.api.queries.users import UserQuery
-from capitania.apps.api.queries.shipment import ShipmentQuery
-from capitania.apps.api.queries.Reviews import UserReviewsQuery, AllReviewsQuery
 from capitania.apps.api.mutations import reviews as reviews_mutations
 
 
@@ -44,6 +42,7 @@ class Mutation(
     update_review = reviews_mutations.UpdateReviewMutation.Field()
     remove_review = reviews_mutations.RemoveReviewMutation.Field()
     create_review = reviews_mutations.CreateReview.Field()
+    create_review_answer = reviews_mutations.CreateReviewAnswer.Field()
 
 
 class Query(
@@ -70,6 +69,8 @@ class Query(
     VehiculoQuery,
     UserReviewsQuery,
     AllReviewsQuery,
+    AllReviewsAnswersQuery,
+    UserReviewAnswerQuery,
     ObjectType,
 ):
     pass
@@ -103,7 +104,7 @@ types = [
     InfogestiShipmentType,
     ShipmentType,
     ClienteType,
-    ReviewType
-
+    ReviewType,
+    ReviewerAnswersType
 ]
 schema = graphene.Schema(query=Query, mutation=Mutation, types=types)

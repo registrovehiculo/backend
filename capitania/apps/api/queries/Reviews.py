@@ -1,7 +1,7 @@
 import graphene
 
-from capitania.apps.api.types.reviews import ReviewType
-from capitania.apps.core.models import User, Review
+from capitania.apps.api.types.reviews import ReviewType, ReviewerAnswersType
+from capitania.apps.core.models import User, Review, ReviewerAnswers
 
 
 class UserReviewsQuery:
@@ -17,3 +17,17 @@ class AllReviewsQuery:
 
     def resolve_all_reviews(self, info):
         return Review.objects.all()
+
+
+class AllReviewsAnswersQuery:
+    all_reviews_answers = graphene.List(ReviewerAnswersType)
+
+    def resolve_all_reviews_answers(self, info):
+        return ReviewerAnswers.objects.all()
+
+
+class UserReviewAnswerQuery:
+    user_review_answer = graphene.List(ReviewerAnswersType, review_id=graphene.Int())
+
+    def resolve_user_review_answer(self, info, review_id):
+        return ReviewerAnswers.objects.filter(reviewer_answers_id=review_id)
