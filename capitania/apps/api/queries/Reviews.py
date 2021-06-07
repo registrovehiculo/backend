@@ -16,7 +16,7 @@ class AllReviewsQuery:
     all_reviews = graphene.List(ReviewType)
 
     def resolve_all_reviews(self, info):
-        return Review.objects.all()
+        return Review.objects.all().order_by('-created_at')
 
 
 class AllReviewsAnswersQuery:
