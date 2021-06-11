@@ -100,7 +100,6 @@ class User(AbstractUser):
 
 
 class Vehiculo(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -114,7 +113,6 @@ class Vehiculo(models.Model):
 
 
 class Artemisa(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -128,7 +126,6 @@ class Artemisa(models.Model):
 
 
 class LaHabana(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -142,7 +139,6 @@ class LaHabana(models.Model):
 
 
 class Camaguey(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -156,7 +152,6 @@ class Camaguey(models.Model):
 
 
 class CiegoDeAvila(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -170,7 +165,6 @@ class CiegoDeAvila(models.Model):
 
 
 class Cienfuegos(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -184,7 +178,6 @@ class Cienfuegos(models.Model):
 
 
 class Granma(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -198,7 +191,6 @@ class Granma(models.Model):
 
 
 class Guantanamo(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -212,7 +204,6 @@ class Guantanamo(models.Model):
 
 
 class Holguin(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -226,7 +217,6 @@ class Holguin(models.Model):
 
 
 class IslaDeLaJuventud(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -240,7 +230,6 @@ class IslaDeLaJuventud(models.Model):
 
 
 class LasTunas(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -254,7 +243,6 @@ class LasTunas(models.Model):
 
 
 class VillaClara(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -268,7 +256,6 @@ class VillaClara(models.Model):
 
 
 class Matanzas(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -282,7 +269,6 @@ class Matanzas(models.Model):
 
 
 class Mayabeque(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -296,7 +282,6 @@ class Mayabeque(models.Model):
 
 
 class SantiagoDeCuba(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -310,7 +295,6 @@ class SantiagoDeCuba(models.Model):
 
 
 class PinarDelRio(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
@@ -324,7 +308,6 @@ class PinarDelRio(models.Model):
 
 
 class SanticEspiritud(models.Model):
-    dpa = models.CharField(max_length=4, null=True, blank=True)
     municipio = models.CharField(max_length=400, null=True, blank=True)
     estadovehiculo = models.CharField(max_length=400, null=True, blank=True)
     marcavehiculo = models.CharField(max_length=400, null=True, blank=True)
