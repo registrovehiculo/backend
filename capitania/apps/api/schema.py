@@ -2,7 +2,6 @@ import graphene
 from graphene_django.types import ObjectType
 from capitania.apps.api.types.provincias import *
 from capitania.apps.api.types.vehiculo import VehiculoType
-from capitania.apps.api.types.adresses import *
 from capitania.apps.api.types.users import UserType
 from capitania.apps.api.types.reviews import ReviewType, ReviewerAnswersType
 from capitania.apps.api.types.shipment import ShipmentType
@@ -27,11 +26,11 @@ from capitania.apps.api.queries.InfogestiContributors import ContributorsFromInf
 from capitania.apps.api.queries.users import UserQuery
 from capitania.apps.api.queries.shipment import ShipmentQuery
 from capitania.apps.api.queries.Reviews import UserReviewsQuery, AllReviewsQuery, AllReviewsAnswersQuery, UserReviewAnswerQuery
-from capitania.apps.api.queries.addresses import AddressQuery
 from capitania.apps.api.queries.Vehiculo import VehiculoQuery
 from capitania.apps.api.mutations import searches as searches_mutations
 from capitania.apps.api.mutations import auth as auth_mutations
 from capitania.apps.api.mutations import reviews as reviews_mutations
+from capitania.apps.api.mutations import shipment as update_database
 
 
 class Mutation(
@@ -43,6 +42,7 @@ class Mutation(
     remove_review = reviews_mutations.RemoveReviewMutation.Field()
     create_review = reviews_mutations.CreateReview.Field()
     create_review_answer = reviews_mutations.CreateReviewAnswer.Field()
+    update_shipment_database = update_database.UpdateShipmentDatabase.Field()
 
 
 class Query(
@@ -64,7 +64,6 @@ class Query(
     ContributorsFromPinarQuery,
     ContributorsFromInfogestiQuery,
     ContributorsFromLaHabanaQuery,
-    AddressQuery,
     UserQuery,
     VehiculoQuery,
     UserReviewsQuery,
@@ -96,10 +95,6 @@ types = [
     LaHabanaType,
     VehiculoType,
     InfogestiContributorsType,
-    AddressType,
-    CountryType,
-    StateType,
-    CityType,
     UserType,
     InfogestiShipmentType,
     ShipmentType,

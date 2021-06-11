@@ -73,3 +73,5 @@ class CreateReviewAnswer(graphene.Mutation):
         reviewer_answers = ReviewerAnswers.objects.create(text=text, reviewer_answers=review, username=username)
         reviewer_answers.save()
         return CreateReviewAnswer(status='ok', reviewer_answers=reviewer_answers)
+
+

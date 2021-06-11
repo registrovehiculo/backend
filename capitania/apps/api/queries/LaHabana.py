@@ -1,211 +1,33 @@
 import graphene
-from capitania.apps.api.types.provincias import LaHabanaType, LaHabanaType
-from capitania.apps.core.models import LaHabana, LaHabana
+from capitania.apps.api.types.provincias import LaHabanaType
+from capitania.apps.api.types.infogestiShipement import ClienteType
+from capitania.apps.core.models import LaHabana, Cliente
 
 
 class ContributorsFromLaHabanaQuery(graphene.ObjectType):
-    contributors_missing_in_onat_la_habana = graphene.List(LaHabanaType, city_name=graphene.String())
-    contributors_with_different_information_la_habana_plate = graphene.List(LaHabanaType, city_name=graphene.String())
-    contributors_with_different_information_la_habana_name = graphene.List(LaHabanaType, city_name=graphene.String())
-    contributors_with_equals_information_la_habana = graphene.List(LaHabanaType, city_name=graphene.String())
+    contributors_missing_in_onat_habana = graphene.List(LaHabanaType)
+    contributors_with_different_information_habana_plate = graphene.List(ClienteType)
+    contributors_with_different_information_habana_name = graphene.List(ClienteType)
+    contributors_with_equals_information_habana = graphene.List(ClienteType)
     habana = graphene.List(LaHabanaType)
 
     # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
-    def resolve_contributors_missing_in_onat_la_habana(self, info, city_name=graphene.String()):
-        # La Habana
-        if city_name == 'Playa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2301')
-        if city_name == 'Plaza De La Revolucion':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2302')
-        if city_name == 'Centro Habana':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2303')
-        if city_name == 'La Habana Vieja':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2304')
-        if city_name == 'Regla':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2305')
-        if city_name == 'La Habana Del Este':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2306')
-        if city_name == 'Guanabacoa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2307')
-        if city_name == 'San Miguel Del Padron':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2308')
-        if city_name == 'Diez De Octubre':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2309')
-        if city_name == 'Cerro':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2310')
-        if city_name == 'Marianao':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2311')
-        if city_name == 'La Lisa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2312')
-        if city_name == 'Boyeros':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2313')
-        if city_name == 'Arroyo Naranjo':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2314')
-        if city_name == 'Cotorro':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA hab LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@INFOGESTI I ON hab.NUMEROIDENTIDAD =  I.NIT WHERE I.NIT IS NULL and DPA = 2315')
+    def resolve_contributors_missing_in_onat_habana(self, info):
+        return LaHabana.objects.raw('SELECT DISTINCT distinct RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID RIGHT OUTER JOIN CORE_LAHABANA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_la_habana_plate(self, info, city_name=graphene.String()):
-        if city_name == 'Playa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2301 and h.DPA = 2301 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Plaza De La Revolucion':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2302 and h.DPA = 2302 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Centro Habana':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2303 and h.DPA = 2303 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'La Habana Vieja':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2304 and h.DPA = 2304 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Regla':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2305 and h.DPA = 2305 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'La Habana Del Este':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2306 and h.DPA = 2306 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Guanabacoa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2307 and h.DPA = 2307 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'San Miguel Del Padron':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2308 and h.DPA = 2308 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Diez De Octubre':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2309 and h.DPA = 2309 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Cerro':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2310 and h.DPA = 2310 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Marianao':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2311 and h.DPA = 2311 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'La Lisa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2312 and h.DPA = 2312 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Boyeros':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2313 and h.DPA = 2313 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Arroyo Naranjo':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2314 and h.DPA = 2314 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Cotorro':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2315 and h.DPA = 2315 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
+    def resolve_contributors_with_different_information_habana_plate(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LAHABANA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2301 AND 2315 AND TT.MATRICULA <> RECA.CHAPANUEVA')
 
 
-    def resolve_contributors_with_different_information_la_habana_name(self, info, city_name=graphene.String()):
-        if city_name == 'Playa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2301 and h.DPA = 2301 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Plaza De La Revolucion':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2302 and h.DPA = 2302 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Centro Habana':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2303 and h.DPA = 2303 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'La Habana Vieja':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2304 and h.DPA = 2304 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Regla':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2305 and h.DPA = 2305 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'La Habana Del Este':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2306 and h.DPA = 2306 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Guanabacoa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2307 and h.DPA = 2307 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'San Miguel Del Padron':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2308 and h.DPA = 2308 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Diez De Octubre':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2309 and h.DPA = 2309 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Cerro':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2310 and h.DPA = 2310 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Marianao':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2311 and h.DPA = 2311 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'La Lisa':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2312 and h.DPA = 2312 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Boyeros':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2313 and h.DPA = 2313 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Arroyo Naranjo':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2314 and h.DPA = 2314 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Cotorro':
-            return LaHabana.objects.raw(
-                "select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2315 and h.DPA = 2315 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-
+    def resolve_contributors_with_different_information_habana_name(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LAHABANA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2301 AND 2315 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA)')
 
     # 4 Contribuyentes totalmente coincidentes
-    def resolve_contributors_with_equals_information_la_habana(self, info, city_name=graphene.String()):
-        if city_name == 'Playa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2301 and h.DPA = 2301 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Plaza De La Revolucion':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2302 and h.DPA = 2302 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Centro Habana':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2303 and h.DPA = 2303 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'La Habana Vieja':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2304 and h.DPA = 2304 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Regla':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2305 and h.DPA = 2305 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'La Habana Del Este':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2306 and h.DPA = 2306 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Guanabacoa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2307 and h.DPA = 2307 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'San Miguel Del Padron':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2308 and h.DPA = 2308 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Diez De Octubre':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2309 and h.DPA = 2309 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Cerro':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2310 and h.DPA = 2310 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Marianao':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2311 and h.DPA = 2311 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'La Lisa':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2312 and h.DPA = 2312 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Boyeros':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2313 and h.DPA = 2313 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Arroyo Naranjo':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2314 and h.DPA = 2314 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Cotorro':
-            return LaHabana.objects.raw(
-                'select distinct * from CORE_LAHABANA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 2315 and h.DPA = 2315 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
+    def resolve_contributors_with_equals_information_habana(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LAHABANA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2301 AND 2315 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
-
-    def resolve_la_habana(self, info):
+    def resolve_habana(self, info):
         return LaHabana.objects.all()
 
 

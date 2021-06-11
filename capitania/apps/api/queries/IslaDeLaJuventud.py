@@ -1,40 +1,33 @@
-import operator
-from functools import reduce
-from itertools import chain
 import graphene
-from django.db import connection
-from django.db.models.query_utils import Q
-from capitania.apps.api.types.provincias import IslaDeLaJuventudType, IslaDeLaJuventudType
-from capitania.apps.core.models import IslaDeLaJuventud, IslaDeLaJuventud
+from capitania.apps.api.types.provincias import IslaDeLaJuventudType
+from capitania.apps.api.types.infogestiShipement import ClienteType
+from capitania.apps.core.models import IslaDeLaJuventud, Cliente
 
 
 class ContributorsFromIslaDeLaJuventudQuery(graphene.ObjectType):
-    contributors_missing_in_onat_isla_de_la_juventud = graphene.List(IslaDeLaJuventudType, city_name=graphene.String())
-    contributors_with_different_information_isla_de_la_juventud_plate = graphene.List(IslaDeLaJuventudType, city_name=graphene.String())
-    contributors_with_different_information_isla_de_la_juventud_name = graphene.List(IslaDeLaJuventudType, city_name=graphene.String())
-    contributors_with_equals_information_isla_de_la_juventud = graphene.List(IslaDeLaJuventudType, city_name=graphene.String())
-    isla_de_la_juventud = graphene.List(IslaDeLaJuventudType)
+    contributors_missing_in_onat_isla = graphene.List(IslaDeLaJuventudType)
+    contributors_with_different_information_isla_plate = graphene.List(ClienteType)
+    contributors_with_different_information_isla_name = graphene.List(ClienteType)
+    contributors_with_equals_information_isla = graphene.List(ClienteType)
+    isla = graphene.List(IslaDeLaJuventudType)
 
     # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
-    def resolve_contributors_missing_in_onat_isla_de_la_juventud(self, info, city_name=graphene.String()):
-        isla_de_la_juventud = IslaDeLaJuventud.objects.raw('select distinct * from CORE_ISLADELAJUVENTUD i LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON i.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL')
-        return isla_de_la_juventud
+    def resolve_contributors_missing_in_onat_isla(self, info):
+        return IslaDeLaJuventud.objects.raw('SELECT DISTINCT RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID RIGHT OUTER JOIN CORE_ISLADELAJUVENTUD RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_isla_de_la_juventud_plate(self, info, city_name=graphene.String()):
-        isla_de_la_juventud = IslaDeLaJuventud.objects.raw("select distinct * from CORE_ISLADELAJUVENTUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 4001 and h.DPA = 4001 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        return isla_de_la_juventud
+    def resolve_contributors_with_different_information_isla_plate(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ISLADELAJUVENTUD RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD = 4001 AND TT.MATRICULA <> RECA.CHAPANUEVA')
 
-    def resolve_contributors_with_different_information_isla_de_la_juventud_name(self, info, city_name=graphene.String()):
-        isla_de_la_juventud = IslaDeLaJuventud.objects.raw("select distinct * from CORE_ISLADELAJUVENTUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 4001 and h.DPA = 4001 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        return isla_de_la_juventud
+
+    def resolve_contributors_with_different_information_isla_name(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ISLADELAJUVENTUD RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD = 4001 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA)')
 
     # 4 Contribuyentes totalmente coincidentes
-    def resolve_contributors_with_equals_information_isla_de_la_juventud(self, info, city_name=graphene.String()):
-        isla_de_la_juventud = IslaDeLaJuventud.objects.raw('select distinct * from CORE_ISLADELAJUVENTUD h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 4001 and h.DPA = 4001 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        return isla_de_la_juventud
+    def resolve_contributors_with_equals_information_isla(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ISLADELAJUVENTUD RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD = 4001 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
-    def resolve_isla_de_la_juventud(self, info):
+    def resolve_isla(self, info):
         return IslaDeLaJuventud.objects.all()
 
 

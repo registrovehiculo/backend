@@ -1,139 +1,31 @@
 import graphene
-from capitania.apps.api.types.provincias import SantiagoDeCubaType, SantiagoDeCubaType
-from capitania.apps.core.models import SantiagoDeCuba, SantiagoDeCuba
+from capitania.apps.api.types.provincias import SantiagoDeCubaType
+from capitania.apps.api.types.infogestiShipement import ClienteType
+from capitania.apps.core.models import SantiagoDeCuba, Cliente
 
 
 class ContributorsFromSantiagoDeCubaQuery(graphene.ObjectType):
-    contributors_missing_in_onat_santiago_de_cuba = graphene.List(SantiagoDeCubaType, city_name=graphene.String())
-    contributors_with_different_information_santiago_de_cuba_plate = graphene.List(SantiagoDeCubaType, city_name=graphene.String())
-    contributors_with_different_information_santiago_de_cuba_name = graphene.List(SantiagoDeCubaType, city_name=graphene.String())
-    contributors_with_equals_information_santiago_de_cuba = graphene.List(SantiagoDeCubaType, city_name=graphene.String())
+    contributors_missing_in_onat_santiago_de_cuba = graphene.List(SantiagoDeCubaType)
+    contributors_with_different_information_santiago_de_cuba_plate = graphene.List(ClienteType)
+    contributors_with_different_information_santiago_de_cuba_name = graphene.List(ClienteType)
+    contributors_with_equals_information_santiago_de_cuba = graphene.List(ClienteType)
     santiago_de_cuba = graphene.List(SantiagoDeCubaType)
 
     # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
-    def resolve_contributors_missing_in_onat_santiago_de_cuba(self, info, city_name=graphene.String()):
-
-        if city_name == 'Contramaestre':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3401')
-        if city_name == 'Mella':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3402')
-        if city_name == 'San Luis':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3403')
-        if city_name == 'Segundo Frente':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3404')
-        if city_name == 'Songo - La Maya':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3405')
-        if city_name == 'Santiago de Cuba':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3406')
-        if city_name == 'Palma Soriano':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3407')
-        if city_name == 'Tercer Frente':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3408')
-        if city_name == 'Guamá':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA s LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON s.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3409')
-
-
+    def resolve_contributors_missing_in_onat_santiago_de_cuba(self, info):
+        return SantiagoDeCuba.objects.raw('SELECT DISTINCT RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID RIGHT OUTER JOIN CORE_ARTEMISA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_santiago_de_cuba_plate(self, info, city_name=graphene.String()):
+    def resolve_contributors_with_different_information_santiago_de_cuba_plate(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ARTEMISA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2101 AND 2111 AND TT.MATRICULA <> RECA.CHAPANUEVA')
 
-        if city_name == 'Contramaestre':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3401 and h.DPA = 3401 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Mella':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3402 and h.DPA = 3402 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'San Luis':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3403 and h.DPA = 3403 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Segundo Frente':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3404 and h.DPA = 3404 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Songo - La Maya':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3405 and h.DPA = 3405 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Santiago de Cuba':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3406 and h.DPA = 3406 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Palma Soriano':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3407 and h.DPA = 3407 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Tercer Frente':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3408 and h.DPA = 3408 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Guamá':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3409 and h.DPA = 3409 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
 
-    def resolve_contributors_with_different_information_santiago_de_cuba_name(self, info, city_name=graphene.String()):
-
-        if city_name == 'Contramaestre':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3401 and h.DPA = 3401 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Mella':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3402 and h.DPA = 3402 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'San Luis':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3403 and h.DPA = 3403 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Segundo Frente':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3404 and h.DPA = 3404 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Songo - La Maya':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3405 and h.DPA = 3405 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Santiago de Cuba':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3406 and h.DPA = 3406 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Palma Soriano':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3407 and h.DPA = 3407 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Tercer Frente':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3408 and h.DPA = 3408 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Guamá':
-            return SantiagoDeCuba.objects.raw(
-                "select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3409 and h.DPA = 3409 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+    def resolve_contributors_with_different_information_santiago_de_cuba_name(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ARTEMISA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2101 AND 2111 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA)')
 
     # 4 Contribuyentes totalmente coincidentes
-    def resolve_contributors_with_equals_information_santiago_de_cuba(self, info, city_name=graphene.String()):
-
-        if city_name == 'Contramaestre':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3401 and h.DPA = 3401 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Mella':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3402 and h.DPA = 3402 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'San Luis':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3403 and h.DPA = 3403 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Segundo Frente':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3404 and h.DPA = 3404 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Songo - La Maya':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3405 and h.DPA = 3405 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Santiago de Cuba':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3406 and h.DPA = 3406 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Palma Soriano':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3407 and h.DPA = 3407 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Tercer Frente':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3408 and h.DPA = 3408 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Guamá':
-            return SantiagoDeCuba.objects.raw(
-                'select distinct * from CORE_SANTIAGODECUBA h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3409 and h.DPA = 3409 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
+    def resolve_contributors_with_equals_information_santiago_de_cuba(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ARTEMISA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2101 AND 2111 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
     def resolve_santiago_de_cuba(self, info):
         return SantiagoDeCuba.objects.all()

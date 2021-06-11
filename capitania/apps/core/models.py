@@ -337,72 +337,6 @@ class SanticEspiritud(models.Model):
     direccion = models.CharField(max_length=400, null=True, blank=True)
 
 
-class Address(models.Model):
-    city = models.ForeignKey('City', on_delete=models.CASCADE, null=True, blank=True)
-    state = models.ForeignKey('State', on_delete=models.CASCADE, null=True, blank=True)
-    country = models.ForeignKey('Country', on_delete=models.CASCADE, null=True, blank=True)
-    latitude = models.FloatField(null=True, blank=True)
-    longitude = models.FloatField(null=True, blank=True)
-
-    class Meta:
-        db_table = 'address'
-
-    def __str__(self):
-        return '{},{},{}'.format(
-            self.city,
-            self.state,
-            self.country
-        )
-
-    def __copy__(self):
-        return Address.objects.create(
-            city=self.city,
-            state=self.state,
-            country=self.country
-        )
-
-
-class Country(models.Model):
-    code = models.CharField(primary_key=True, max_length=3)
-    code_iso2 = models.CharField(max_length=2, unique=True, null=True)
-    name_es = models.CharField(max_length=100, default='')
-    name_en = models.CharField(max_length=100, default='')
-    name_fr = models.CharField(max_length=100, default='')
-
-    class Meta:
-        db_table = 'geo_country'
-        ordering = ('name_es',)
-        verbose_name_plural = 'countries'
-
-    def __str__(self):
-        return self.name_es
-
-
-class State(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        db_table = 'geo_state'
-
-    def __str__(self):
-        return self.name
-
-
-class City(models.Model):
-    state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=100)
-    latitude = models.CharField(max_length=255, null=True)
-    longitude = models.CharField(max_length=255, null=True)
-
-    class Meta:
-        db_table = 'geo_city'
-        verbose_name_plural = 'cities'
-
-    def __str__(self):
-        return self.name
-
-
 class InfogestiContributors(models.Model):
     nit = models.CharField(max_length=11, blank=True, null=True)
     unidad = models.CharField(max_length=4, blank=True, null=True)
@@ -416,13 +350,13 @@ class InfogestiContributors(models.Model):
 
 
 class Shipment(models.Model):
-    province_number = models.CharField(max_length=2, blank=True, null=True)
-    id_number = models.CharField(max_length=11, blank=True, null=True)
-    owner_name = models.CharField(max_length=255, blank=True, null=True)
-    registry_number = models.CharField(max_length=255, blank=True, null=True)
-    shipment_name = models.CharField(max_length=255, blank=True, null=True)
-    captaincy_province = models.CharField(max_length=255, blank=True, null=True)
-    base_name = models.CharField(max_length=255, blank=True, null=True)
+    province_number = models.CharField(max_length=2, blank=True, null=True, default=None)
+    id_number = models.CharField(max_length=20, blank=True, null=True, default=None)
+    owner_name = models.CharField(max_length=255, blank=True, null=True, default=None)
+    registry_number = models.CharField(max_length=255, blank=True, null=True, default=None)
+    shipment_name = models.CharField(max_length=255, blank=True, null=True, default=None)
+    captaincy_province = models.CharField(max_length=255, blank=True, null=True, default=None)
+    base_name = models.CharField(max_length=255, blank=True, null=True, default=None)
 
 
 class InfogestiShipment(models.Model):
@@ -439,6 +373,8 @@ class Cliente(models.Model):
     capitania = models.CharField(max_length=50, blank=True, null=True)
     basificacion = models.CharField(max_length=50, blank=True, null=True)
     registro = models.CharField(max_length=20, blank=True, null=True)
+    matricula = models.CharField(max_length=20, blank=True, null=True)
+    direccion = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         db_table = u'"INFOGESTI"."CLIENTE"'

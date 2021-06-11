@@ -1,122 +1,31 @@
 import graphene
-from capitania.apps.api.types.provincias import LasTunasType, LasTunasType
-from capitania.apps.core.models import LasTunas, LasTunas
+from capitania.apps.api.types.provincias import LasTunasType
+from capitania.apps.api.types.infogestiShipement import ClienteType
+from capitania.apps.core.models import LasTunas, Cliente
 
 
 class ContributorsFromLasTunasQuery(graphene.ObjectType):
-    contributors_missing_in_onat_las_tunas = graphene.List(LasTunasType, city_name=graphene.String())
-    contributors_with_different_information_las_tunas_plate = graphene.List(LasTunasType, city_name=graphene.String())
-    contributors_with_different_information_las_tunas_name = graphene.List(LasTunasType, city_name=graphene.String())
-    contributors_with_equals_information_las_tunas = graphene.List(LasTunasType, city_name=graphene.String())
+    contributors_missing_in_onat_las_tunas = graphene.List(LasTunasType)
+    contributors_with_different_information_las_tunas_plate = graphene.List(ClienteType)
+    contributors_with_different_information_las_tunas_name = graphene.List(ClienteType)
+    contributors_with_equals_information_las_tunas = graphene.List(ClienteType)
     las_tunas = graphene.List(LasTunasType)
 
     # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
-    def resolve_contributors_missing_in_onat_las_tunas(self, info, city_name=graphene.String()):
-        if city_name == 'Manati':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3101')
-        if city_name == 'Puerto Padre':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3102')
-        if city_name == 'Jesus Menendez':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3103')
-        if city_name == 'Majibacoa':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3104')
-        if city_name == 'Las Tunas':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3105')
-        if city_name == 'Jobabo':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3106')
-        if city_name == 'Colombia':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3107')
-        if city_name == 'Amancio':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS l LEFT OUTER JOIN IG_CONTRIBUYENTE_PN@infogesti info ON l.NUMEROIDENTIDAD =  info.NIT WHERE info.NIT IS NULL and DPA = 3108')
+    def resolve_contributors_missing_in_onat_las_tunas(self, info):
+        return LasTunas.objects.raw('SELECT DISTINCT RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID RIGHT OUTER JOIN CORE_LASTUNAS RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
-    def resolve_contributors_with_different_information_las_tunas_plate(self, info, city_name=graphene.String()):
-        if city_name == 'Manati':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3101 and h.DPA = 3101 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Puerto Padre':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3102 and h.DPA = 3102 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Jesus Menendez':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3103 and h.DPA = 3103 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Majibacoa':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3104 and h.DPA = 3104 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Las Tunas':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3105 and h.DPA = 3105 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Jobabo':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3106 and h.DPA = 3106 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Colombia':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3107 and h.DPA = 3107 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
-        if city_name == 'Amancio':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3108 and h.DPA = 3108 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA <> h.CHAPANUEVA")
+    def resolve_contributors_with_different_information_las_tunas_plate(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LASTUNAS RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 3101 AND 3108 AND TT.MATRICULA <> RECA.CHAPANUEVA')
 
 
-    def resolve_contributors_with_different_information_las_tunas_name(self, info, city_name=graphene.String()):
-        if city_name == 'Manati':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3101 and h.DPA = 3101 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Puerto Padre':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3102 and h.DPA = 3102 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Jesus Menendez':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3103 and h.DPA = 3103 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Majibacoa':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3104 and h.DPA = 3104 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Las Tunas':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3105 and h.DPA = 3105 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Jobabo':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3106 and h.DPA = 3106 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Colombia':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3107 and h.DPA = 3107 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
-        if city_name == 'Amancio':
-            return LasTunas.objects.raw(
-                "select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3108 and h.DPA = 3108 AND upper(cl.NOMBRE_COMPLETO) <> upper(h.DATOSPERSONA) inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE")
+    def resolve_contributors_with_different_information_las_tunas_name(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LASTUNAS RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 3101 AND 3108 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA)')
 
     # 4 Contribuyentes totalmente coincidentes
-    def resolve_contributors_with_equals_information_las_tunas(self, info, city_name=graphene.String()):
-        if city_name == 'Manati':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3101 and h.DPA = 3101 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Puerto Padre':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3102 and h.DPA = 3102 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Jesus Menendez':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3103 and h.DPA = 3103 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Majibacoa':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3104 and h.DPA = 3104 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Las Tunas':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3105 and h.DPA = 3105 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Jobabo':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3106 and h.DPA = 3106 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Colombia':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3107 and h.DPA = 3107 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
-        if city_name == 'Amancio':
-            return LasTunas.objects.raw(
-                'select distinct * from CORE_LASTUNAS h inner join CLIENTE@infogesti cl on cl.NIT = h.NUMEROIDENTIDAD AND cl.UNIDAD = 3108 and h.DPA = 3108 inner join CLIENTE_TT@infogesti tt on cl.ID = tt.ID_CLIENTE where tt.MATRICULA = h.CHAPANUEVA order by  h.NUMEROIDENTIDAD')
+    def resolve_contributors_with_equals_information_las_tunas(self, info):
+        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LASTUNAS RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 3101 AND 3108 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
     def resolve_las_tunas(self, info):
         return LasTunas.objects.all()
