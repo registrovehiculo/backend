@@ -6,6 +6,7 @@ from capitania.apps.api.types.users import UserType
 from capitania.apps.api.types.reviews import ReviewType, ReviewerAnswersType
 from capitania.apps.api.types.shipment import ShipmentType
 from capitania.apps.api.types.infogestiShipement import InfogestiShipmentType, ClienteType
+from capitania.apps.api.queries.deleteRecords import deleteRecords
 from capitania.apps.api.queries.PinarDelRio import ContributorsFromPinarQuery
 from capitania.apps.api.queries.Artemisa import ContributorsFromArtemisaQuery
 from capitania.apps.api.queries.Camaguey import ContributorsFromCamagueyQuery
@@ -64,6 +65,7 @@ class Query(
     ContributorsFromPinarQuery,
     ContributorsFromInfogestiQuery,
     ContributorsFromLaHabanaQuery,
+    deleteRecords,
     UserQuery,
     VehiculoQuery,
     UserReviewsQuery,
