@@ -32,6 +32,7 @@ from capitania.apps.api.mutations import searches as searches_mutations
 from capitania.apps.api.mutations import auth as auth_mutations
 from capitania.apps.api.mutations import reviews as reviews_mutations
 from capitania.apps.api.mutations import shipment as update_database
+from capitania.apps.api.mutations import PinarDelRio
 
 
 class Mutation(
@@ -44,6 +45,7 @@ class Mutation(
     create_review = reviews_mutations.CreateReview.Field()
     create_review_answer = reviews_mutations.CreateReviewAnswer.Field()
     update_shipment_database = update_database.UpdateShipmentDatabase.Field()
+    update_pinar_del_rio_database = PinarDelRio.UpdatePinarDelRioDatabase.Field()
 
 
 class Query(
