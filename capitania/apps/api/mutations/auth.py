@@ -1,7 +1,7 @@
 import graphene
 from graphql import GraphQLError
 from django.utils.timezone import now
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
 from capitania.apps.api.types.users import UserType
 from capitania.apps.core.models import User
@@ -39,5 +39,28 @@ class LoginMutation(graphene.Mutation):
         except User.DoesNotExist:
             pass
             return LoginMutation(status='error')
+        except:
+            raise GraphQLError(message='error')
+
+
+class SignupMutation(graphene.Mutation):
+    user = graphene.Field(UserType)
+    status = graphene.String()
+
+    class Arguments:
+        username = graphene.String(required=True)
+        password = graphene.String(required=True)
+
+    def mutate(self, info, username, password):
+        try:
+            user = User.objects.create(
+                username=username,
+                password=make_password(password),
+                is_active=True,
+            )
+
+            user.save()
+            return SignupMutation(status='ok', user=user)
+
         except:
             raise GraphQLError(message='error')
