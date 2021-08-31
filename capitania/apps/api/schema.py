@@ -50,6 +50,7 @@ class Mutation(
     update_embarcacion = UpdateEmbarcacion.UpdateEmbarcacionDatabase.Field()
     signup = auth.SignupMutation.Field()
     get_user = getUser.getUser.Field()
+    delete_all_user = getUser.deleteAllUser.Field()
 
 
 class Query(

@@ -10,7 +10,7 @@ class UpdateEmbarcacionDatabase(graphene.Mutation):
 
     def mutate(self, info):
         try:
-            book = xlrd.open_workbook("/home/edward/Embarcaciones/Embarcacion.xls")
+            book = xlrd.open_workbook("C:\Embarcaciones\Embarcacion.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)

@@ -19,3 +19,12 @@ class getUser(graphene.Mutation):
         except User.DoesNotExist:
             pass
             return getUser(status='ok')
+
+
+class deleteAllUser(graphene.Mutation):
+    user = graphene.Field(UserType)
+    status = graphene.String()
+
+    def mutate(self, info):
+        user = User.objects.all().delete()
+        return deleteAllUser(status='ok', user=user)

@@ -15,7 +15,7 @@ class SearchMutation(graphene.Mutation):
     def mutate(self, info, criteria):
         try:
             vehiculo = Vehiculo.objects.exclude(Q(datospersona__isnull=True) | Q(datospersona='')).filter(
-                datospersona__istartswith=criteria).distinct()[:10]
+                datospersona__istartswith=criteria).distinct()[:20]
             return SearchMutation(
                 status='ok',
                 vehiculo=vehiculo
