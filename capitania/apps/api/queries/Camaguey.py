@@ -13,7 +13,7 @@ class ContributorsFromCamagueyQuery(graphene.ObjectType):
 
     # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
     def resolve_contributors_missing_in_onat_camaguey(self, info):
-        return Camaguey.objects.raw('SELECT DISTINCT RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID RIGHT OUTER JOIN CORE_CAMAGUEY RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL')
+        return Camaguey.objects.raw('SELECT DISTINCT RECA.* from CORE_CAMAGUEY reca left OUTER JOIN cliente@infogesti C ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL order by reca.NUMEROIDENTIDAD')
     
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
     def resolve_contributors_with_different_information_camaguey_plate(self, info):
