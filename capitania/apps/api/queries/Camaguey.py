@@ -7,7 +7,7 @@ from capitania.apps.core.models import Camaguey, Cliente
 class ContributorsFromCamagueyQuery(graphene.ObjectType):
     contributors_missing_in_onat_camaguey = graphene.List(CamagueyType)
     contributors_with_different_information_camaguey_plate = graphene.List(ClienteType)
-    contributors_with_different_information_camaguey_name = graphene.List(ClienteType)
+    contributors_with_different_information_camaguey_name = graphene.List(CamagueyType)
     contributors_with_equals_information_camaguey = graphene.List(ClienteType)
     camaguey = graphene.List(CamagueyType)
 
@@ -21,7 +21,7 @@ class ContributorsFromCamagueyQuery(graphene.ObjectType):
 
 
     def resolve_contributors_with_different_information_camaguey_name(self, info):
-        return Cliente.objects.raw('SELECT DISTINCT C.ID,  C.NIT, C.NOMBRE_COMPLETO, C.DPA, TT.MATRICULA, DIR.DIRECCION FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_CAMAGUEY RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 3001 AND 3013 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA)')
+        return Camaguey.objects.raw('SELECT DISTINCT * FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_CAMAGUEY RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 3001 AND 3013 AND UPPER(C.NOMBRE_COMPLETO) <> UPPER(RECA.DATOSPERSONA) AND  upper(substr(C.NOMBRE_COMPLETO, 0, 1)) <> upper(substr(RECA.DATOSPERSONA, 0, 1)) AND  upper(substr(C.NOMBRE_COMPLETO, 2, 1)) <> upper(substr(RECA.DATOSPERSONA, 2, 1)) AND  upper(substr(C.NOMBRE_COMPLETO, 0, 1)) <> upper(substr(RECA.DATOSPERSONA, 2, 1)) AND  upper(substr(C.NOMBRE_COMPLETO, 2, 1)) <> upper(substr(RECA.DATOSPERSONA, 0, 1))')
 
     # 4 Contribuyentes totalmente coincidentes
     def resolve_contributors_with_equals_information_camaguey(self, info):
