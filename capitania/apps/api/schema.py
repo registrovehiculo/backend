@@ -33,7 +33,7 @@ from capitania.apps.api.mutations import auth as auth_mutations
 from capitania.apps.api.mutations import reviews as reviews_mutations
 from capitania.apps.api.mutations import shipment as update_database
 from capitania.apps.api.mutations import UpdateTransporte, UpdateEmbarcacion
-from capitania.apps.api.mutations import auth, getUser
+from capitania.apps.api.mutations import auth, getUser, UpdateName
 
 
 class Mutation(
@@ -51,6 +51,7 @@ class Mutation(
     signup = auth.SignupMutation.Field()
     get_user = getUser.getUser.Field()
     delete_all_user = getUser.deleteAllUser.Field()
+    update_name = UpdateName.UpdateName.Field()
 
 
 class Query(
