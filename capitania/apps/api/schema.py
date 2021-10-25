@@ -23,6 +23,7 @@ from capitania.apps.api.queries.SantiagoDeCuba import ContributorsFromSantiagoDe
 from capitania.apps.api.queries.LasTunas import ContributorsFromLasTunasQuery
 from capitania.apps.api.queries.VillaClara import ContributorsFromVillaClaraQuery
 from capitania.apps.api.queries.LaHabana import ContributorsFromLaHabanaQuery
+from capitania.apps.api.queries.RepeatedPlates import RepeatedPlatesQuery
 from capitania.apps.api.queries.InfogestiContributors import ContributorsFromInfogestiQuery
 from capitania.apps.api.queries.users import UserQuery
 from capitania.apps.api.queries.shipment import ShipmentQuery
@@ -80,6 +81,7 @@ class Query(
     AllReviewsQuery,
     AllReviewsAnswersQuery,
     UserReviewAnswerQuery,
+    RepeatedPlatesQuery,
     ObjectType,
 ):
     pass

@@ -11,8 +11,8 @@ class UpdateTransporteDatabase(graphene.Mutation):
     status = graphene.String()
 
     def mutate(self, info):
-        try:
-            book = xlrd.open_workbook(r'C:\Transporte\PINAR DEL RIO.xls')
+        # try:
+            book = xlrd.open_workbook("/home/edward/Transporte/PINAR DEL RIO.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -36,7 +36,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\ARTEMISA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/ARTEMISA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -60,7 +60,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\CAMAGUEY.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/CAMAGUEY.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -84,7 +84,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\CIEGO DE AVILA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/CIEGO DE AVILA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -108,7 +108,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\CIENFUEGOS.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/CIENFUEGOS.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -132,7 +132,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\GRANMA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/GRANMA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -156,7 +156,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\GUANTANAMO.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/GUANTANAMO.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -179,7 +179,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\HOLGUIN.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/HOLGUIN.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -202,7 +202,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\ISLA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/ISLA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -225,7 +225,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\LAS TUNAS.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/LAS TUNAS.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -248,7 +248,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\MATANZAS.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/MATANZAS.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -272,7 +272,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\MAYABEQUE.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/MAYABEQUE.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -295,7 +295,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\SANTIAGO DE CUBA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/SANTIAGO DE CUBA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -319,7 +319,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\S SPIRITUS.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/S SPIRITUS.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -343,7 +343,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\VILLA CLARA.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/VILLA CLARA.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -366,7 +366,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\HABANA1.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/HABANA1.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -390,7 +390,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\HABANA2.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/HABANA2.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -413,7 +413,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
 
-            book = xlrd.open_workbook(r'C:\Transporte\HABANA3.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/HABANA3.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -435,7 +435,7 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
-            book = xlrd.open_workbook(r'C:\Transporte\HABANA4.xls')
+            book = xlrd.open_workbook("/home/edward/Transporte/HABANA4.xls")
             print("The number of worksheets is {0}".format(book.nsheets))
             print("Worksheet name(s): {0}".format(book.sheet_names()))
             sheet = book.sheet_by_index(0)
@@ -458,5 +458,5 @@ class UpdateTransporteDatabase(graphene.Mutation):
                     [municipio, estado_vehiculo, marca_vehiculo, chapa_nueva, numero_motor,
                      numero_carroseria, marca_motor, numero_identidad, datos_persona, direccion])
             return UpdateTransporteDatabase(status='ok')
-        except:
-            raise GraphQLError(message='error')
+        # except:
+        #     raise GraphQLError(message='error')

@@ -31,6 +31,8 @@ class ContributorsFromArtemisaQuery(graphene.ObjectType):
     def resolve_contributors_with_equals_information_artemisa(self, info):
         return Artemisa.objects.raw('SELECT DISTINCT reca.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_ARTEMISA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2201 AND 2211 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
+    # def resolve_artemisa_repeated:
+
     def resolve_artemisa(self, info):
         return Artemisa.objects.all()
 

@@ -33,7 +33,7 @@ class ContributorsFromLaHabanaQuery(graphene.ObjectType):
         return LaHabana.objects.raw('SELECT DISTINCT RECA.* FROM DIRECCION@INFOGESTI DIR INNER JOIN CLIENTE_DIRECCION@INFOGESTI C_DIR ON DIR.ID = C_DIR.ID_DIRECCION INNER JOIN CLIENTE@INFOGESTI C ON C.ID = C_DIR.ID_CLIENTE INNER JOIN CLIENTE_TT@INFOGESTI TT ON TT.ID_CLIENTE = C.ID INNER JOIN CORE_LAHABANA RECA ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.UNIDAD BETWEEN 2301 AND 2315 AND UPPER(C.NOMBRE_COMPLETO) = UPPER(RECA.DATOSPERSONA) AND TT.MATRICULA = RECA.CHAPANUEVA')
 
     def resolve_habana(self, info):
-        return LaHabana.objects.all()
+        return LaHabana.objects.raw('select h.id, h.datospersona, h.numeroidentidad from CORE_LAHABANA h')
 
 
 schema = graphene.Schema(query=ContributorsFromLaHabanaQuery, auto_camelcase=False)
