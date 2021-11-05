@@ -37,7 +37,7 @@ class ContributorsFromPinarQuery(graphene.ObjectType):
 
     def resolve_wrong_id_pinar(self, info):
         return PinarDelRio.objects.annotate(numeroidentidad_len=Length('numeroidentidad')).filter(Q(
-            numeroidentidad_len__lt=5) | Q(numeroidentidad__isnull=True))
+            numeroidentidad_len__lt=5) | Q(numeroidentidad__isnull=True) | Q(datospersona__isnull=True))
 
     def resolve_pinar_del_rio(self, info):
         return PinarDelRio.objects.all()

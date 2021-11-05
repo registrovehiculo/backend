@@ -16,9 +16,9 @@ class ContributorsFromLaHabanaQuery(graphene.ObjectType):
     wrong_id_habana = graphene.List(LaHabanaType)
     habana = graphene.List(LaHabanaType)
 
-    # 1 Contribuyentes que estan en capitania vehiculo que no estan en la onat
+    # 1 Contribuyentes que estan en vehiculo que no estan en la onat
     def resolve_contributors_missing_in_onat_habana(self, info):
-        return LaHabana.objects.raw('SELECT DISTINCT RECA.* from CORE_LAHABANA reca left OUTER JOIN cliente@infogesti C ON C.NIT = RECA.NUMEROIDENTIDAD WHERE C.NIT IS NULL order by reca.NUMEROIDENTIDAD')
+        return LaHabana.objects.raw('select distinct reca.* from CORE_LAHABANA reca left outer join cliente@infogesti c on reca.NUMEROIDENTIDAD = c.nit left outer join cliente_tt@infogesti tt on tt.id_cliente =c.id where tt.id_cliente is null')
 
     # 2 Contribuyentes que estan en ambos capitania con informaciones diferentes
     def resolve_contributors_with_different_information_habana_plate(self, info):
@@ -39,7 +39,7 @@ class ContributorsFromLaHabanaQuery(graphene.ObjectType):
 
     def resolve_wrong_id_habana(self, info):
         return LaHabana.objects.annotate(numeroidentidad_len=Length('numeroidentidad')).filter(Q(
-            numeroidentidad_len__lt=5) | Q(numeroidentidad__isnull=True))
+            numeroidentidad_len__lt=5) | Q(numeroidentidad__isnull=True) | Q(datospersona__isnull=True))
 
     def resolve_habana(self, info):
         return LaHabana.objects.raw('select h.id, h.datospersona, h.numeroidentidad from CORE_LAHABANA h')
