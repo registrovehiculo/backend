@@ -2,7 +2,7 @@ import graphene
 from django.db.models.aggregates import Count
 
 from capitania.apps.api.types.infogestiShipement import ClienteType
-from capitania.apps.core.models import Matanzas, Cliente
+from capitania.apps.core.models import Cliente
 
 
 class RepeatedPlatesQuery(graphene.ObjectType):
